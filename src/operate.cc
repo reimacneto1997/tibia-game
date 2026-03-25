@@ -2367,7 +2367,7 @@ void Talk(uint32 CreatureID, int Mode, const char *Addressee, const char *Text, 
 					continue;
 				}
 
-				if(DistanceX > 1 && DistanceY > 1){
+				if(DistanceX > 1 || DistanceY > 1){
 					SendTalk(Spectator->Connection, 0, Creature->Name, Mode,
 							Creature->posx, Creature->posy, Creature->posz,
 							"pspsps");
