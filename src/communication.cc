@@ -1532,9 +1532,13 @@ bool OpenSocket(void){
 int AcceptorThreadLoop(void *Unused){
 	AcceptorThreadID = gettid();
 	print(1, "Warte auf Clients...\n");
-	while(GameRunning()){
+	while(true){
 		int Socket = accept(TCPSocket, NULL, NULL);
 		if(Socket == -1){
+			if(!GameRunning()){
+				break;
+			}
+
 			error("AcceptorThreadLoop: Fehler %d beim Accept.\n", errno);
 			continue;
 		}

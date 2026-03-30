@@ -1569,6 +1569,10 @@ void PatchSector(int SectorX, int SectorY, int SectorZ, bool FullSector,
 			}
 
 			if(IN.Token == BYTES){
+				if(OffsetX != -1 && OffsetY != -1 && !FieldPatched[OffsetX][OffsetY]){
+					OUT.writeLn();
+				}
+
 				uint8 *SectorOffset = IN.getBytesequence();
 				OffsetX = (int)SectorOffset[0];
 				OffsetY = (int)SectorOffset[1];
@@ -1633,6 +1637,10 @@ void PatchSector(int SectorX, int SectorY, int SectorZ, bool FullSector,
 			}else{
 				IN.error("unknown map flag");
 			}
+		}
+
+		if(OffsetX != -1 && OffsetY != -1 && !FieldPatched[OffsetX][OffsetY]){
+			OUT.writeLn();
 		}
 	}
 
